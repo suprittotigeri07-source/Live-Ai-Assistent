@@ -1,27 +1,17 @@
-import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.router import api_router
-from app.core.logging import setup_logging
 from app.core.settings import settings
-
-setup_logging()
-
-logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("🚀 Live AI Assistant started successfully")
-
-    # Startup code goes here
+    print("Live AI Assistant Started")
     yield
-
-    # Shutdown code goes here
-    logger.info("🛑 Live AI Assistant stopped")
+    print("Live AI Assistant Stopped")
 
 
 app = FastAPI(
