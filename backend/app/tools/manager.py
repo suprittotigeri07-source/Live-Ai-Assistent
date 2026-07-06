@@ -2,6 +2,7 @@ from app.tools.calculator import CalculatorTool
 from app.tools.datetime_tool import DateTimeTool
 from app.tools.file_reader import FileReaderTool
 from app.tools.registry import ToolRegistry
+from app.tools.web_search import WebSearchTool
 
 
 class ToolManager:
@@ -13,6 +14,7 @@ class ToolManager:
         self.registry.register(DateTimeTool())
         self.registry.register(CalculatorTool())
         self.registry.register(FileReaderTool())
+        self.registry.register(WebSearchTool())
 
     def execute(self, tool_name: str, *args):
 
