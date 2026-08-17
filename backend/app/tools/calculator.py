@@ -20,17 +20,55 @@ class CalculatorTool(BaseTool):
     }
 
     def run(self, expression: str):
-        return self.evaluate(ast.parse(expression, mode="eval").body)
+
+        try:
+            expression = expression.strip()
+
+            if not expression:
+                raise ValueError("Expression cannot be empty.")
+
+            tree = ast.parse(expression, mode="eval")
+
+            return self.evaluate(tree.body)
+
+        except ZeroDivisionError:
+            raise ValueError("Cannot divide by zero.")
+
+        except (SyntaxError, ValueError, TypeError):
+            raise ValueError(
+                f"Invalid arithmetic expression: {expression}"
+            )
 
     def evaluate(self, node):
 
+        # Numbers
         if isinstance(node, ast.Constant):
-            return node.value
 
+            if isinstance(node.value, (int, float)):
+                return node.value
+
+            raise ValueError("Only numbers are allowed.")
+
+        # Binary operations
         if isinstance(node, ast.BinOp):
+
+            if type(node.op) not in self.operators:
+                raise ValueError("Operator not allowed.")
+
             left = self.evaluate(node.left)
             right = self.evaluate(node.right)
 
-            return self.operators[type(node.op)](left, right)
+            operation = self.operators[type(node.op)]
 
-        raise ValueError("Invalid expression")
+            return operation(left, right)
+
+        # Unary + and -
+        if isinstance(node, ast.UnaryOp):
+
+            if isinstance(node.op, ast.USub):
+                return -self.evaluate(node.operand)
+
+            if isinstance(node.op, ast.UAdd):
+                return self.evaluate(node.operand)
+
+        raise ValueError("Invalid expression.")

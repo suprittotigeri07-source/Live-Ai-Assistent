@@ -13,10 +13,16 @@ class Settings(BaseSettings):
 
     OLLAMA_BASE_URL: str = "http://localhost:11434/v1"
     OLLAMA_API_KEY: str = "ollama"
-    OLLAMA_MODEL: str = "qwen2.5-coder:7b"
+    OLLAMA_MODEL: str = "qwen2.5:3b"
 
     TAVILY_API_KEY: str = ""
-
+    
+    DATABASE_HOST: str
+    DATABASE_PORT: int
+    DATABASE_NAME: str
+    DATABASE_USER: str
+    DATABASE_PASSWORD: str
+    
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore",

@@ -4,5 +4,9 @@ from abc import ABC, abstractmethod
 class BaseLLMProvider(ABC):
 
     @abstractmethod
-    def stream_chat(self, message: str):
+    def chat(self, messages: list):
+        pass
+
+    @abstractmethod
+    def stream_chat(self, messages: list):
         pass

@@ -2,8 +2,11 @@ class Planner:
 
     def choose_tool(self, message: str):
 
-        msg = message.lower()
+        msg = message.lower().strip()
 
+        # -----------------------------
+        # Web Search
+        # -----------------------------
         if any(word in msg for word in [
             "latest",
             "news",
@@ -14,6 +17,9 @@ class Planner:
         ]):
             return "web_search"
 
+        # -----------------------------
+        # Calculator
+        # -----------------------------
         if any(op in msg for op in [
             "+",
             "-",
@@ -22,4 +28,7 @@ class Planner:
         ]):
             return "calculator"
 
+        # -----------------------------
+        # No tool required
+        # -----------------------------
         return None

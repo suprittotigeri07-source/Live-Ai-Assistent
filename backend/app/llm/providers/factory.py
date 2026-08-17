@@ -4,15 +4,9 @@ from app.llm.providers.ollama import OllamaProvider
 
 def get_provider():
 
-    providers = {
-        "ollama": OllamaProvider,
-    }
+    if settings.LLM_PROVIDER.lower() == "ollama":
+        return OllamaProvider()
 
-    provider_class = providers.get(settings.LLM_PROVIDER)
-
-    if provider_class is None:
-        raise ValueError(
-            f"Unknown provider: {settings.LLM_PROVIDER}"
-        )
-
-    return provider_class()
+    raise ValueError(
+        f"Unsupported provider: {settings.LLM_PROVIDER}"
+    )

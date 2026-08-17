@@ -1,8 +1,11 @@
+import logging
+
 from openai import OpenAI
 
 from app.core.settings import settings
-from app.llm.prompts.system_prompt import SYSTEM_PROMPT
 from app.llm.providers.base import BaseLLMProvider
+
+logger = logging.getLogger(__name__)
 
 
 class OllamaProvider(BaseLLMProvider):
@@ -14,21 +17,25 @@ class OllamaProvider(BaseLLMProvider):
             api_key=settings.OLLAMA_API_KEY,
         )
 
-    def stream_chat(self, message: str):
+    def chat(self, messages: list):
+
+        logger.info("Sending request to Ollama")
+
+        response = self.client.chat.completions.create(
+            model=settings.OLLAMA_MODEL,
+            messages=messages,
+        )
+
+        return response.choices[0].message.content
+
+    def stream_chat(self, messages: list):
+
+        logger.info("Streaming response from Ollama")
 
         stream = self.client.chat.completions.create(
             model=settings.OLLAMA_MODEL,
+            messages=messages,
             stream=True,
-            messages=[
-                {
-                    "role": "system",
-                    "content": SYSTEM_PROMPT,
-                },
-                {
-                    "role": "user",
-                    "content": message,
-                },
-            ],
         )
 
         for chunk in stream:
