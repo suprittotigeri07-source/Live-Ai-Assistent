@@ -11,7 +11,7 @@
 
 **A fully local, production-ready AI assistant with real-time streaming, semantic memory, and built-in tools.**
 
-[Features](#-features) · [Architecture](#-architecture) · [Quick Start](#-quick-start) · [API Reference](#-api-reference) · [Project Structure](#-project-structure)
+[Features](#-features) · [Output](#-output) · [Architecture](#-architecture) · [Quick Start](#-quick-start) · [API Reference](#-api-reference) · [Project Structure](#-project-structure)
 
 </div>
 
@@ -22,6 +22,30 @@
 Live AI Assistant is a full-stack AI chat application that runs **entirely on your local machine**. It combines a FastAPI backend with an Ollama-powered LLM, FAISS vector memory for semantic recall, and a premium React frontend with real-time streaming.
 
 > **No cloud required.** Everything runs locally — your data stays private.
+
+---
+
+## 💻 Output
+
+<div align="center">
+
+### 1. Clean Light-Blue & White Workspace (Welcome Screen)
+![Welcome Screen](<img width="1920" height="1080" alt="Screenshot (47)" src="https://github.com/user-attachments/assets/289a0257-1423-4e96-b2ce-a28e260b82ba" />
+)
+
+<br/>
+
+### 2. Real-Time Streaming AI Assistant Response
+![Chat Response](<img width="1920" height="1080" alt="Screenshot (48)" src="https://github.com/user-attachments/assets/9c3f2122-3308-4440-b07f-c86edb2ce04e" />
+)
+
+<br/>
+
+### 3. Syntax-Highlighted Code Blocks & Tool Execution
+![Code Syntax Highlighting](<img width="1920" height="1080" alt="Screenshot (49)" src="https://github.com/user-attachments/assets/7df83c1e-eca0-432c-ac79-9290a0ed8af2" />
+)
+
+</div>
 
 ---
 
@@ -42,7 +66,7 @@ Live AI Assistant is a full-stack AI chat application that runs **entirely on yo
 | 📄 **File Reader** | "read file", "open file" | Reads local text files |
 
 ### 🎨 Frontend
-- **Dark glassmorphism UI** with purple/indigo accent system
+- **Human-crafted Light Blue & White UI** with soft sky blue header and slate typography
 - **Markdown rendering** with GitHub Flavored Markdown (GFM)
 - **Syntax-highlighted code blocks** with one-click copy
 - **Tool result cards** — visual cards for search results, calculations
